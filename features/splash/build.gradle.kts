@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.hilt)
+    id(Plugins.kotlinKapt)
+    id(Plugins.safeArgs)
 }
 
 android {
@@ -30,9 +33,24 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":common"))
+    implementation(project(":entities"))
+
+
+    implementation(Libs.HILT.hilt)
+    kapt(Libs.HILT.hiltKapt)
+
+    implementation(Libs.NAV.navigationUI)
+    implementation(Libs.NAV.navigationFragment)
+    implementation (Libs.Splash.splash)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -14,6 +14,7 @@ object Versions {
     const val okhttpLogging = "4.10.0"
     const val okhttp = "5.0.0-alpha.3"
     const val gson = "2.10.1"
+    const val splash = "6.4.0"
 
 
     const val glide = "4.16.0"
@@ -49,10 +50,14 @@ object Libs {
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     }
+    object Splash{
+        const val splash = "com.airbnb.android:lottie:${Versions.splash}"
+    }
 
     object GLIDE {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     }
+
 }
 
 object Plugins {

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
@@ -33,6 +35,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+    implementation(project(":common"))
+    implementation(project(":entities"))
+
+    implementation(Libs.HILT.hilt)
+    kapt(Libs.HILT.hiltKapt)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

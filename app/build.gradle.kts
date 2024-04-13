@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id(Plugins.hilt)
     id(Plugins.kotlinKapt)
+    id(Plugins.safeArgs)
 }
 
 android {
@@ -42,6 +43,9 @@ dependencies {
     implementation(project(":features:login"))
     implementation(project(":features:register"))
     implementation(project(":features:splash"))
+
+    implementation(Libs.NAV.navigationUI)
+    implementation(Libs.NAV.navigationFragment)
 
     implementation(Libs.HILT.hilt)
     kapt(Libs.HILT.hiltKapt)

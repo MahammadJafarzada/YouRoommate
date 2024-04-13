@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
@@ -30,9 +32,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding{
+        enable = true
+    }
 }
 
 dependencies {
+    implementation(project(":entities"))
+    implementation(Libs.HILT.hilt)
+    kapt(Libs.HILT.hiltKapt)
+
     implementation(Libs.NAV.navigationUI)
     implementation(Libs.NAV.navigationFragment)
 
