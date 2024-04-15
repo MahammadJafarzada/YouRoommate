@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.hilt)
+    id(Plugins.kotlinKapt)
+    id(Plugins.safeArgs)
 }
 
 android {
@@ -33,7 +36,11 @@ android {
 }
 
 dependencies {
+    implementation(Libs.HILT.hilt)
+    implementation(Libs.HILT.hiltKapt)
 
+    implementation(Libs.NAV.navigationUI)
+    implementation(Libs.NAV.navigationFragment)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

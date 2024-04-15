@@ -2,7 +2,7 @@ object Versions {
     const val androidApplication = "8.2.2"
     const val jetbrainsKotlinAndroid = "1.9.22"
     const val library = "8.2.2"
-    const val safeArgs = "2.7.3"
+    const val safeArgs = "2.7.7"
     const val materialComponents = "1.11.0"
     const val core = "1.12.0"
     const val combat = "1.6.1"
