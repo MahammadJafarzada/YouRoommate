@@ -16,12 +16,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
     private val viewModel: SplashViewModel by viewModels()
-    lateinit var binding : FragmentSplashBinding
+    private lateinit var binding : FragmentSplashBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSplashBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
         playLottie()

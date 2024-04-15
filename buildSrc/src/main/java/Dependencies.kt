@@ -6,7 +6,7 @@ object Versions {
     const val materialComponents = "1.11.0"
     const val core = "1.12.0"
     const val combat = "1.6.1"
-    const val hilt = "2.47"
+    const val hilt = "2.46"
     const val navigation = "2.7.6"
     const val constraintlayout = "2.1.4"
 
