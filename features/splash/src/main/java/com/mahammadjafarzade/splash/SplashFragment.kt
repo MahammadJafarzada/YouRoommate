@@ -32,7 +32,6 @@ class SplashFragment : Fragment() {
         binding.animationView.playAnimation()
         binding.animationView.addAnimatorListener(object : AnimatorListener{
             override fun onAnimationStart(animation: Animator) {
-                TODO("Not yet implemented")
             }
 
             override fun onAnimationEnd(animation: Animator) {
@@ -40,11 +39,9 @@ class SplashFragment : Fragment() {
             }
 
             override fun onAnimationCancel(animation: Animator) {
-                TODO("Not yet implemented")
             }
 
             override fun onAnimationRepeat(animation: Animator) {
-                TODO("Not yet implemented")
             }
 
         })
