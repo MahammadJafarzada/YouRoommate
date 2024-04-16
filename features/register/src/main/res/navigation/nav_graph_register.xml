@@ -10,5 +10,5 @@
         android:name="com.mahammadjafarzade.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
-    <deepLink app:uri="youroommate://register/"></deepLink>
+    <deepLink app:uri="youroommate://toRegister/"></deepLink>
 </navigation>

@@ -4,6 +4,8 @@ plugins {
     id(Plugins.kotlinKapt)
     id(Plugins.hilt)
     id(Plugins.safeArgs)
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -46,7 +48,11 @@ dependencies {
     implementation(project(":entities"))
 
     implementation(Libs.HILT.hilt)
+    implementation(libs.firebase.database)
     kapt(Libs.HILT.hiltKapt)
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-analytics")
 
     implementation(Libs.NAV.navigationUI)
     implementation(Libs.NAV.navigationFragment)
