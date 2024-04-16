@@ -10,6 +10,6 @@
         android:name="com.mahammadjafarzade.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
-    <deepLink app:uri="youroommate://login/"></deepLink>
+    <deepLink app:uri="youroommate://toLogin/"></deepLink>
 
 </navigation>
