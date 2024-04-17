@@ -21,6 +21,27 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs{
+        getByName("debug") {
+            storeFile =
+                file("C:\\Users\\Orkhan\\AndroidStudioProjects\\YouRoommate\\certficates\\DebugKeyStore.jks")
+            storePassword = "room159"
+            keyAlias = "key0"
+            keyPassword = "room159"
+        }
+        create("release"){
+            keyAlias = "key0"
+            keyPassword = "room159"
+            storeFile = file("../certficates/ReleaseKeyStore.jks")
+            storePassword = "room159"
+        }
+        create("dev"){
+            keyAlias = "key0"
+            keyPassword = "room159"
+            storeFile = file("../certficates/DebugKeyStore.jks")
+            storePassword = "room159"
+        }
+    }
 
     buildTypes {
         release {
@@ -29,6 +50,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -59,6 +89,11 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+
+    implementation("com.facebook.android:facebook-login:latest.release")
+    implementation("com.facebook.android:facebook-android-sdk:15.1.0")
+
 
     implementation(Libs.HILT.hilt)
     implementation(libs.firebase.database)

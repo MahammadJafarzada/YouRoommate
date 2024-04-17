@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">YouRoommate</string>
+
+
+    <string name="facebook_app_id">1339125116784737</string>
+    <string name="fb_login_protocol_scheme">fb1339125116784737</string>
+    <string name="facebook_client_token">96e1786993682cd09c431bb102c26d09</string>
 </resources>

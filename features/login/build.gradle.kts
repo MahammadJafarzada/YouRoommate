@@ -17,7 +17,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -49,6 +48,14 @@ dependencies {
     implementation(Libs.HILT.hilt)
     implementation(libs.firebase.database)
     kapt(Libs.HILT.hiltKapt)
+
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    
+    implementation("com.facebook.android:facebook-login:latest.release")
+    implementation("com.facebook.android:facebook-android-sdk:15.1.0")
+
 
     implementation(Libs.NAV.navigationUI)
     implementation(Libs.NAV.navigationFragment)
