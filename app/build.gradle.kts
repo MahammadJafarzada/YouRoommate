@@ -24,7 +24,7 @@ android {
     signingConfigs{
         getByName("debug") {
             storeFile =
-                file("C:\\Users\\Orkhan\\AndroidStudioProjects\\YouRoommate\\certficates\\DebugKeyStore.jks")
+                file("../certficates/DebugKeyStore.jks")
             storePassword = "room159"
             keyAlias = "key0"
             keyPassword = "room159"
