@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.mahammadjafarzade.common.util.toMain
+import com.mahammadjafarzade.common.util.toHome
 import com.mahammadjafarzade.common.util.toRegister
 import com.mahammadjafarzade.entities.model.UserData
 import com.mahammadjafarzade.login.databinding.FragmentLoginBinding
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
                                 "Login successful",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            findNavController().toMain()
+                            findNavController().toHome()
                         }
                         return
                     }
@@ -138,7 +138,7 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     Log.d("TAG", "signInWithCredential:success")
                     val user = auth.currentUser
-                    findNavController().toMain()
+                    findNavController().toHome()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)

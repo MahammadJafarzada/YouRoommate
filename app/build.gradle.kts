@@ -79,7 +79,10 @@ dependencies {
     implementation(project(":features:login"))
     implementation(project(":features:register"))
     implementation(project(":features:splash"))
-    implementation(project(":features:mainScreen"))
+    implementation(project(":features:account"))
+    implementation(project(":features:favourite"))
+    implementation(project(":features:homeScreen"))
+    implementation(project(":features:chat"))
 
 
     implementation(Libs.Splash.splash)

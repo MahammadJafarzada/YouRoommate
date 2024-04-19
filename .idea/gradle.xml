@@ -27,8 +27,11 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/entities" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/account" />
+            <option value="$PROJECT_DIR$/features/chat" />
+            <option value="$PROJECT_DIR$/features/favourite" />
+            <option value="$PROJECT_DIR$/features/homeScreen" />
             <option value="$PROJECT_DIR$/features/login" />
-            <option value="$PROJECT_DIR$/features/mainScreen" />
             <option value="$PROJECT_DIR$/features/register" />
             <option value="$PROJECT_DIR$/features/splash" />
             <option value="$PROJECT_DIR$/network" />

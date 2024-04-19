@@ -12,7 +12,20 @@ fun NavController.toRegister(){
     this.navigate(uri)
 }
 
-fun NavController.toMain(){
-    val uri = Uri.parse("youroommate://toMain/")
+fun NavController.toHome(){
+    val uri = Uri.parse("youroommate://toHome/")
     this.navigate(uri)
 }
+fun NavController.toFavourite(){
+    val uri = Uri.parse("youroommate://toFavourite/")
+    this.navigate(uri)
+}
+fun NavController.toChat(){
+    val uri = Uri.parse("youroommate://toChat/")
+    this.navigate(uri)
+}
+fun NavController.toAccount(){
+    val uri = Uri.parse("youroommate://toAccount /")
+    this.navigate(uri)
+}
+

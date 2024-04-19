@@ -15,8 +15,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.mahammadjafarzade.common.util.toHome
 import com.mahammadjafarzade.common.util.toLogin
-import com.mahammadjafarzade.common.util.toMain
 import com.mahammadjafarzade.common.util.toRegister
 import com.mahammadjafarzade.entities.model.UserData
 import com.mahammadjafarzade.register.databinding.FragmentRegisterBinding
@@ -67,7 +67,7 @@ class RegisterFragment : Fragment() {
                         "Register Successful",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().toMain()
+                    findNavController().toHome()
                 }else{
                     Toast.makeText(
                         requireContext(),
