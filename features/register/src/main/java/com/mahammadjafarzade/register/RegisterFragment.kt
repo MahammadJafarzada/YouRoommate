@@ -1,6 +1,6 @@
 package com.mahammadjafarzade.register
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
+import com.mahammadjafarzade.account.AccountFragment
 import com.mahammadjafarzade.common.util.toHome
-import com.mahammadjafarzade.common.util.toLogin
-import com.mahammadjafarzade.common.util.toRegister
 import com.mahammadjafarzade.entities.model.UserData
 import com.mahammadjafarzade.register.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,20 +55,34 @@ class RegisterFragment : Fragment() {
         }
         return binding.root
     }
-    private fun registerUser( fullName : String, email : String,number : String,password : String){
-        databaseReference.orderByChild("fullName").equalTo(fullName).addListenerForSingleValueEvent(object : ValueEventListener{
+    private fun registerUser(fullName: String, email: String, number: String, password: String) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val databaseReference = FirebaseDatabase.getInstance().getReference("users")
+
+        databaseReference.orderByChild("fullName").equalTo(fullName).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    val id = databaseReference.push().key
-                    val userData =  UserData(id,fullName,email, number, password)
-                    databaseReference.child(id!!).setValue(userData)
-                    Toast.makeText(
-                        requireContext(),
-                        "Register Successful",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().toHome()
-                }else{
+                if (!dataSnapshot.exists()) {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val uid = firebaseAuth.currentUser?.uid
+                                val userData = UserData(uid, fullName, email, number, password)
+                                databaseReference.child(uid!!).setValue(userData)
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Register Successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                findNavController().toHome()
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Registration failed: ${task.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                } else {
                     Toast.makeText(
                         requireContext(),
                         "User already exists",
@@ -88,3 +102,4 @@ class RegisterFragment : Fragment() {
         })
     }
 }
+

@@ -24,7 +24,7 @@ android {
     signingConfigs{
         getByName("debug") {
             storeFile =
-                file("../certficates/DebugKeyStore.jks")
+                file("C:\\Users\\Orkhan\\AndroidStudioProjects\\YouRoommate\\certficates\\DebugKeyStore.jks")
             storePassword = "room159"
             keyAlias = "key0"
             keyPassword = "room159"
@@ -58,7 +58,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("dev")
         }
     }
     compileOptions {
@@ -83,6 +83,7 @@ dependencies {
     implementation(project(":features:favourite"))
     implementation(project(":features:homeScreen"))
     implementation(project(":features:chat"))
+    implementation(project(":features:addCard"))
 
 
     implementation(Libs.Splash.splash)

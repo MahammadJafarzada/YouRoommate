@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_add_card"
+    app:startDestination="@id/addCardFragment">
+
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.mahammadjafarzade.addcard.AddCardFragment"
+        android:label="fragment_add_card"
+        tools:layout="@layout/fragment_add_card" />
+    <deepLink app:uri="youroommate://toAddCard/"></deepLink>
+</navigation>

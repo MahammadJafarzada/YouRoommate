@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/entities" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/account" />
+            <option value="$PROJECT_DIR$/features/addCard" />
             <option value="$PROJECT_DIR$/features/chat" />
             <option value="$PROJECT_DIR$/features/favourite" />
             <option value="$PROJECT_DIR$/features/homeScreen" />

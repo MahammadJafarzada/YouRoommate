@@ -46,13 +46,16 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":common"))
     implementation(project(":entities"))
-
+    implementation(project(":features:account"))
     implementation(Libs.HILT.hilt)
     implementation(libs.firebase.database)
     kapt(Libs.HILT.hiltKapt)
 
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+    implementation("com.google.firebase:firebase-auth")
+
 
     implementation(Libs.NAV.navigationUI)
     implementation(Libs.NAV.navigationFragment)

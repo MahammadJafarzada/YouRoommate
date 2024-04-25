@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -15,8 +16,16 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -61,6 +70,9 @@ class LoginFragment : Fragment() {
         binding.loginButtonfb.setOnClickListener {
             loginFacebook()
         }
+        binding.loginButtonGoogle.setOnClickListener {
+            loginGoogle()
+        }
 
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.reference.child("users")
@@ -68,35 +80,26 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
-    private fun loginUser(userEmail : String,userPassword : String){
-        databaseReference.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataSnapshot.exists()){
-                    for(userSnapshot in dataSnapshot.children){
-                        val userData = userSnapshot.getValue(UserData::class.java)
+    private fun loginUser(userEmail: String, userPassword: String) {
+        val firebaseAuth = FirebaseAuth.getInstance()
 
-                        if(userData != null && userData.password == userPassword){
-                            Toast.makeText(
-                                requireContext(),
-                                "Login successful",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            findNavController().toHome()
-                        }
-                        return
-                    }
+        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Login successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().toHome()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Login failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(
-                    requireContext(),
-                    "Login failed ${error.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        })
     }
 
     //Login with Facebook
@@ -152,4 +155,58 @@ class LoginFragment : Fragment() {
             }
     }
     //Login with google
+    private lateinit var signInRequest: BeginSignInRequest
+
+    private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
+    private lateinit var mGoogleSignInClient : GoogleSignInClient
+    fun loginGoogle() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestServerAuthCode(getString(R.string.google_client_id))
+            .requestIdToken(getString(R.string.google_client_id))
+            .requestEmail().build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+
+        signInRequest = BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    // Your server's client ID, not your Android client ID.
+                    .setServerClientId(getString(R.string.google_client_id))
+                    // Only show accounts previously used to sign in.
+                    .setFilterByAuthorizedAccounts(true)
+                    .build())
+            .build()
+
+        val signInIntent = mGoogleSignInClient.signInIntent
+        googleLauncher.launch(signInIntent)
+    }
+
+    private val googleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: androidx.activity.result.ActivityResult ->
+
+        result.data?.let {
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(it)
+            if(result?.isSuccess == true) {
+                val acct = result.signInAccount
+                val authCode = acct!!.serverAuthCode
+                val idToken = acct.idToken
+
+                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                Firebase.auth.signInWithCredential(firebaseCredential)
+                    .addOnCompleteListener(requireActivity()) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("TAG", "signInWithCredential:success")
+                            val user = auth.currentUser
+                            findNavController().toHome()
+                            //updateUI(user)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("TAG", "signInWithCredential:failure", task.exception)
+                            //updateUI(null)
+                        }
+                    }
+            }
+        }
+    }
 }

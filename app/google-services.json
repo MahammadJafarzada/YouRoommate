@@ -13,7 +13,28 @@
           "package_name": "com.mahammadjafarzade.youroommate"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "163851405590-8oahqc3e4fm02h5qifgg0lfq72p77ink.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahammadjafarzade.youroommate",
+            "certificate_hash": "88a80fee1c44e6527314dcb3de486e684643376e"
+          }
+        },
+        {
+          "client_id": "163851405590-fce0vaieb7bmmj8cv6es4uj86cct0etm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahammadjafarzade.youroommate",
+            "certificate_hash": "4228fd2295724f987ebfa023471f039180d133b2"
+          }
+        },
+        {
+          "client_id": "163851405590-1pd14d70cptpagdsh2382crpm75kijpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCvoBq-VdTxWKovGVKbwOvn3y4NpeIhdLQ"
@@ -21,7 +42,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163851405590-1pd14d70cptpagdsh2382crpm75kijpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
