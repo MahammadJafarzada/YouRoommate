@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.mahammadjafarzade.entities.model.RoomCard
 import com.mahammadjafarzade.homescreen.databinding.FragmentHomeBinding
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -60,7 +62,32 @@ class HomeFragment : Fragment() {
             }
 
         })
+        binding.search.setOnQueryTextListener(  object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // Handle submit action if needed
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                // Handle text change and perform search
+                searchList(newText)
+                return true
+            }
+        })
+
+
 
         return binding.root
+    }
+    fun searchList(text: String) {
+        val searchList = java.util.ArrayList<RoomCard>()
+        for (dataClass in dataList) {
+            if (dataClass.title?.lowercase()
+                    ?.contains(text.lowercase(Locale.getDefault())) == true
+            ) {
+                searchList.add(dataClass)
+            }
+        }
+        adapter.searchDataList(searchList)
     }
 }

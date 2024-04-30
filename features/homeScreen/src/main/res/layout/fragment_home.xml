@@ -6,16 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
+        <SearchView
+            android:id="@+id/search"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lavender_border"
+            android:focusable="false"
+            app:closeIcon="@drawable/magnifying_glass_solid"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Search..."
+            app:searchHintIcon="@null"
+            app:searchIcon="@drawable/magnifying_glass_solid" />
+
         <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_room"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/room_list" />
 
 

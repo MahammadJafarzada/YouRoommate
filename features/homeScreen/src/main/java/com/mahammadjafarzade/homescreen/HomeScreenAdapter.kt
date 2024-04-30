@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mahammadjafarzade.entities.model.RoomCard
 
-class HomeScreenAdapter(private val context: Context, private val dataList:List<RoomCard>): RecyclerView.Adapter<HomeViewHolder>() {
+class HomeScreenAdapter(private val context: Context, private var dataList:List<RoomCard>): RecyclerView.Adapter<HomeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.room_list, parent,false)
         return HomeViewHolder(view)
@@ -24,6 +24,10 @@ class HomeScreenAdapter(private val context: Context, private val dataList:List<
         Glide.with(context).load(dataList[position].image).into(holder.cardImg)
         holder.cardCity.text = dataList[position].city
         holder.cardPrice.text = dataList[position].price.toString()
+    }
+    fun searchDataList(searchList: List<RoomCard>) {
+        dataList = searchList
+        notifyDataSetChanged()
     }
 }
 class HomeViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
