@@ -1,5 +1,6 @@
 package com.mahammadjafarzade.addcard
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import com.mahammadjafarzade.addcard.databinding.FragmentAddCardBinding
 
 class AddCardFragment : Fragment() {
     private lateinit var binding : FragmentAddCardBinding
+    var imageURL : String? =null
+    var uri : Uri ?= null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

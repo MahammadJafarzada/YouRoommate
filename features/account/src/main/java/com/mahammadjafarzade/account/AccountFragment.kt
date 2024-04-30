@@ -75,6 +75,7 @@ class AccountFragment : Fragment() {
     private fun signOut(){
         FirebaseAuth.getInstance().signOut()
         Log.d("SignOut", "User signed out")
+        findNavController().toLogin()
     }
     
 }
