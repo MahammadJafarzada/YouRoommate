@@ -99,6 +99,9 @@ dependencies {
     implementation("com.facebook.android:facebook-android-sdk:15.1.0")
 
 
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
     implementation(Libs.HILT.hilt)
     implementation(libs.firebase.database)
     kapt(Libs.HILT.hiltKapt)
