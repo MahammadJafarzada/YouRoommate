@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
@@ -30,10 +32,30 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":common"))
+    implementation(project(":entities"))
+    implementation(project(":features:homeScreen"))
+
+    implementation(Libs.HILT.hilt)
+    kapt(Libs.HILT.hiltKapt)
+    implementation(libs.firebase.database)
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+
+
+    implementation(Libs.NAV.navigationUI)
+    implementation(Libs.NAV.navigationFragment)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

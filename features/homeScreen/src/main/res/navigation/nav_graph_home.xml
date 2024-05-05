@@ -9,7 +9,16 @@
         android:id="@+id/homeFragment"
         android:name="com.mahammadjafarzade.homescreen.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_roomCardDetailFragment"
+            app:destination="@id/roomCardDetailFragment" />
+    </fragment>
     <deepLink app:uri="youroommate://toHome/"></deepLink>
+    <fragment
+        android:id="@+id/roomCardDetailFragment"
+        android:name="com.mahammadjafarzade.homescreen.RoomCardDetailFragment"
+        android:label="fragment_room_card_detail"
+        tools:layout="@layout/fragment_room_card_detail" />
 
 </navigation>
