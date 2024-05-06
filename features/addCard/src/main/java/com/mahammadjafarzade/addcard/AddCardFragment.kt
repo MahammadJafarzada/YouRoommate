@@ -94,10 +94,10 @@ class AddCardFragment : Fragment() {
     private fun uploadData() {
         val title = binding.uploadTitle.text.toString()
         val description = binding.uploadDesc.text.toString()
-//        val price = binding.uploadPrice.text.toString().toDoubleOrNull() // Parse price to Double
-//        val city = binding.uploadCity.text.toString()
+        val price = binding.uploadPrice.text.toString().toDoubleOrNull() // Parse price to Double
+        val city = binding.uploadCity.text.toString()
 //        val profileTitle = binding.uploadProfileTitle.text.toString()
-//        val number = binding.uploadNumber.text.toString()
+        val number = binding.uploadNumber.text.toString()
 
         // Assuming you have a way to get the UID and profile image
         val uid = FirebaseAuth.getInstance().currentUser?.uid
@@ -108,11 +108,11 @@ class AddCardFragment : Fragment() {
             image = imageURL,
             title = title,
             description = description,
-          //  price = price,
-          //  city = city,
+            price = price,
+            city = city,
             profileImg = profileImg,
           //  profileTitle = profileTitle,
-          //  number = number
+            number = number
         )
 
         val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)

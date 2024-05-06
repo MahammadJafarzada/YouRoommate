@@ -24,14 +24,27 @@ class RoomCardDetailFragment : Fragment() {
     ): View? {
         binding = FragmentRoomCardDetailBinding.inflate(inflater, container, false)
 
+        binding.backButton.setOnClickListener {
+            backButton()
+        }
+        val number = arguments?.getString("Number")
+
+        val city = arguments?.getString("City")
+        val price = arguments?.getString("Price")
         val title = arguments?.getString("Title")
         val description = arguments?.getString("Description")
         val image = arguments?.getString("Image")
 
+        number?.let { binding.detailNumber.text = it }
+        city?.let { binding.detailCity.text = it }
+        price?.let { binding.detailPrice.text = it }
         title?.let { binding.detailTitle.text = it }
         description?.let { binding.detailDesc.text = it }
         image?.let { Glide.with(this).load(it).into(binding.detailImage) }
 
         return binding.root
+    }
+    private fun backButton() {
+        requireActivity().supportFragmentManager.popBackStack()
     }
 }

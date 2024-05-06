@@ -69,6 +69,9 @@ class HomeFragment : Fragment(), HomeScreenAdapter.OnFavoriteItemClickListener {
 
         adapter.setOnItemClickListener { roomCard ->
             val bundle = Bundle().apply {
+                putString("Number", roomCard.number)
+                putString("City", roomCard.city)
+                putString("Price", roomCard.price.toString())
                 putString("Title", roomCard.title)
                 putString("Description", roomCard.description)
                 putString("Image", roomCard.image)

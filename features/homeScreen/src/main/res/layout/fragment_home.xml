@@ -6,6 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/welcomePart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                            android:id="@+id/userImage"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginVertical="15dp"
+                            android:foregroundGravity="center"
+                            android:src="@drawable/profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_marginHorizontal="15dp"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/userImage"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/welcomeUser"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="3dp"
+                                    android:gravity="center_vertical"
+                                    android:text="Welcome back"
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp" />
+
+                                <TextView
+                                    android:id="@+id/userName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="6dp"
+                                    android:gravity="center_vertical"
+                                    android:text="John Wick"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    android:textSize="22dp" />
+
+                        </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
         <SearchView
             android:id="@+id/search"
             android:layout_marginTop="20dp"
@@ -17,7 +73,7 @@
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcomePart"
             app:queryHint="Search..."
             app:searchHintIcon="@null"
             app:searchIcon="@drawable/magnifying_glass_solid" />
@@ -25,7 +81,7 @@
         <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_room"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
