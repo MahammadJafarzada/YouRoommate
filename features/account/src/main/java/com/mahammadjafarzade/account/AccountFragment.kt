@@ -62,9 +62,6 @@ class AccountFragment : Fragment() {
         binding.signOutBtn.setOnClickListener {
             signOut()
         }
-        binding.editButton.setOnClickListener {
-            editProfile()
-        }
         return binding.root
     }
 
@@ -74,62 +71,6 @@ class AccountFragment : Fragment() {
         binding.profileEmail.text = user.email
     }
 
-    private fun editProfile() {
-        val currentUser = auth.currentUser
-        val uid = currentUser?.uid
-
-        if (uid != null) {
-            databaseReference.child("users").child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        val userData = dataSnapshot.getValue(UserData::class.java)
-                        if (userData != null) {
-                            val dialogView = layoutInflater.inflate(R.layout.fragment_account, null)
-                            val dialogBuilder = AlertDialog.Builder(requireContext())
-                            dialogBuilder.setView(dialogView)
-
-                            val editProfileName = dialogView.findViewById<EditText>(R.id.profileName)
-                            val editProfileNumber = dialogView.findViewById<EditText>(R.id.profileNumber)
-                            val editProfileEmail = dialogView.findViewById<EditText>(R.id.profileEmail)
-
-                            editProfileName.setText(userData.fullName)
-                            editProfileNumber.setText(userData.number)
-                            editProfileEmail.setText(userData.email)
-
-                            dialogBuilder.setTitle("Edit Profile")
-                                .setPositiveButton("Save") { _, _ ->
-                                    val newFullName = editProfileName.text.toString()
-                                    val newNumber = editProfileNumber.text.toString()
-                                    val newEmail = editProfileEmail.text.toString()
-
-                                    val updatedUser = UserData(newFullName, newNumber, newEmail)
-
-                                    databaseReference.child("users").child(uid).setValue(updatedUser)
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
-                                                Toast.makeText(requireContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show()
-                                                displayUserData(updatedUser)
-                                            } else {
-                                                Toast.makeText(requireContext(), "An error occurred while updating the profile. Please try again.", Toast.LENGTH_SHORT).show()
-                                            }
-                                        }
-                                }
-                                .setNegativeButton("Cancel") { dialog, _ ->
-                                    dialog.dismiss()
-                                }
-
-                            val alertDialog = dialogBuilder.create()
-                            alertDialog.show()
-                        }
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Do nothing in case of error
-                }
-            })
-        }
-    }
 
     private fun signOut(){
         FirebaseAuth.getInstance().signOut()

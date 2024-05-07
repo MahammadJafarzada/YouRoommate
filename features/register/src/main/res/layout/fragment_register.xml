@@ -24,7 +24,7 @@
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your name"
+            android:hint="@string/name_hint"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -44,7 +44,7 @@
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your email"
+            android:hint="@string/email_hint"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -65,8 +65,8 @@
             android:id="@+id/edtNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your number"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/number_hint"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +87,7 @@
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your password"
+            android:hint="@string/password_hint"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +109,7 @@
             android:id="@+id/edtConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Retype your password"
+            android:hint="@string/confirm_password_hint"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:background="@color/yellow"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +133,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:text="Already Registered , Sign In !"
+        android:text="@string/already_registered"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

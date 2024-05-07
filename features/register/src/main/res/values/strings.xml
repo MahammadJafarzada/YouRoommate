@@ -1,4 +1,9 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_hint">Type your name</string>
+    <string name="email_hint">Type your email</string>
+    <string name="number_hint">Type your number</string>
+    <string name="password_hint">Type your password</string>
+    <string name="confirm_password_hint">Retype your password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_registered">Already Registered, Sign In!</string>
 </resources>

@@ -27,17 +27,17 @@ class RoomCardDetailFragment : Fragment() {
         binding.backButton.setOnClickListener {
             backButton()
         }
-        val number = arguments?.getString("Number")
+        val number = arguments?.getInt("Number")
 
         val city = arguments?.getString("City")
-        val price = arguments?.getString("Price")
+        val price = arguments?.getDouble("Price")
         val title = arguments?.getString("Title")
         val description = arguments?.getString("Description")
         val image = arguments?.getString("Image")
 
-        number?.let { binding.detailNumber.text = it }
+        number?.let { binding.detailNumber.text = it.toString() }
         city?.let { binding.detailCity.text = it }
-        price?.let { binding.detailPrice.text = it }
+        price?.let { binding.detailPrice.text = it.toString() }
         title?.let { binding.detailTitle.text = it }
         description?.let { binding.detailDesc.text = it }
         image?.let { Glide.with(this).load(it).into(binding.detailImage) }

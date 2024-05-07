@@ -8,15 +8,28 @@
     tools:context=".RoomCardDetailFragment">
 
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:src="@drawable/back_arrow"
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+
     <ImageView
         android:layout_width="400dp"
         android:layout_height="200dp"
@@ -26,22 +39,21 @@
         android:src="@drawable/roomsample"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:layout_marginTop="14dp"
-        android:textSize="24sp"
         android:layout_gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        android:layout_marginTop="16dp"
+        android:text="Title"
         android:textColor="@color/lavender"
-        android:layout_marginBottom="12dp"/>
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage" />
 
     <TextView
         android:layout_width="match_parent"

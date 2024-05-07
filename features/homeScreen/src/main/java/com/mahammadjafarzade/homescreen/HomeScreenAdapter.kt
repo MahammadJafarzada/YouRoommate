@@ -22,7 +22,8 @@ class HomeScreenAdapter(
     private val context: Context,
     private var dataList: List<RoomCard>,
     private var favoriteItemClickListener: OnFavoriteItemClickListener?,
-    private var onItemClickListener: ((RoomCard) -> Unit)? = null
+    private var onItemClickListener: ((RoomCard) -> Unit)? = null,
+
 
 ) : RecyclerView.Adapter<HomeViewHolder>() {
 
@@ -46,12 +47,12 @@ class HomeScreenAdapter(
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         Glide.with(context).load(dataList[position].image).into(holder.cardImg)
+        holder.cardTitle.text = dataList[position].title
         holder.cardCity.text = dataList[position].city
         holder.cardPrice.text = dataList[position].price.toString()
         holder.cardDescription.text = dataList[position].description
         holder.cardDetail.setOnClickListener {
             onItemClickListener?.invoke(dataList[position])
-
         }
 
         // Set favorite icon based on the roomCard state
@@ -71,6 +72,7 @@ class HomeScreenAdapter(
         }
     }
 
+
     fun searchDataList(searchList: List<RoomCard>) {
         dataList = searchList
         notifyDataSetChanged()
@@ -80,6 +82,7 @@ class HomeScreenAdapter(
 class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var cardImg: ImageView
+    var cardTitle: TextView
     var cardCity: TextView
     var cardPrice: TextView
     var cardDetail: CardView
@@ -88,6 +91,7 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     init {
         cardImg = itemView.findViewById(R.id.imageView)
+        cardTitle = itemView.findViewById(R.id.txt_title)
         cardCity = itemView.findViewById(R.id.txt_city)
         cardPrice = itemView.findViewById(R.id.txt_price)
         cardDescription = itemView.findViewById(R.id.txt_address)

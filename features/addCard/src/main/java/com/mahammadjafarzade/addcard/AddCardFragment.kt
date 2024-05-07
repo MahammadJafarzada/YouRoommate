@@ -4,12 +4,15 @@ import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -84,6 +87,7 @@ class AddCardFragment : Fragment() {
                     imageURL = urlImage.toString()
                     uploadData()
                     dialog.dismiss()
+                    resetFields()
                 }
             }.addOnFailureListener {
                 dialog.dismiss()
@@ -111,9 +115,9 @@ class AddCardFragment : Fragment() {
             price = price,
             city = city,
             profileImg = profileImg,
-          //  profileTitle = profileTitle,
-            number = number
+            number = number// Convert to Int, use default value if conversion fails
         )
+
 
         val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
         FirebaseDatabase.getInstance().getReference("Room card").child(currentDate)
@@ -133,5 +137,39 @@ class AddCardFragment : Fragment() {
                 }
             }
     }
+    private fun showExitDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Are your sure exit from app?")
+            .setPositiveButton("Yes") { _, _ ->
+                requireActivity().finish()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val dialog = builder.create()
+        dialog.setOnShowListener {
+            val messageView = dialog.findViewById<TextView>(android.R.id.message)
+            messageView.setTextColor(Color.parseColor("#FFFFFFFF"))
+
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.BLACK))
+
+            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setTextColor(Color.WHITE)
+
+            val negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton.setTextColor(Color.WHITE)
+        }
+        dialog.show()
+
+    }
+    private fun resetFields() {
+        binding.uploadImage.setImageDrawable(null)
+        binding.uploadTitle.text.clear()
+        binding.uploadDesc.text.clear()
+        binding.uploadPrice.text.clear()
+        binding.uploadCity.text.clear()
+        binding.uploadNumber.text.clear()
+    }
 }
+
 
