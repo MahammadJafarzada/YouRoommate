@@ -48,6 +48,7 @@ class HomeScreenAdapter(
         Glide.with(context).load(dataList[position].image).into(holder.cardImg)
         holder.cardCity.text = dataList[position].city
         holder.cardPrice.text = dataList[position].price.toString()
+        holder.cardDescription.text = dataList[position].description
         holder.cardDetail.setOnClickListener {
             onItemClickListener?.invoke(dataList[position])
 
@@ -82,13 +83,15 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var cardCity: TextView
     var cardPrice: TextView
     var cardDetail: CardView
+    var cardDescription : TextView
     var favoriteIcon: ImageView
 
     init {
-        cardImg = itemView.findViewById(R.id.room_image)
-        cardCity = itemView.findViewById(R.id.room_city)
-        cardPrice = itemView.findViewById(R.id.room_price)
+        cardImg = itemView.findViewById(R.id.imageView)
+        cardCity = itemView.findViewById(R.id.txt_city)
+        cardPrice = itemView.findViewById(R.id.txt_price)
+        cardDescription = itemView.findViewById(R.id.txt_address)
         cardDetail = itemView.findViewById(R.id.detailRoom)
-        favoriteIcon = itemView.findViewById(R.id.favorite_button)
+        favoriteIcon = itemView.findViewById(R.id.imageButtonFav)
     }
 }

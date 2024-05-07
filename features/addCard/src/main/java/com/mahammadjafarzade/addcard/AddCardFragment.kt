@@ -94,7 +94,7 @@ class AddCardFragment : Fragment() {
     private fun uploadData() {
         val title = binding.uploadTitle.text.toString()
         val description = binding.uploadDesc.text.toString()
-        val price = binding.uploadPrice.text.toString().toDoubleOrNull() // Parse price to Double
+        val price = binding.uploadPrice.text.toString().toDoubleOrNull()
         val city = binding.uploadCity.text.toString()
 //        val profileTitle = binding.uploadProfileTitle.text.toString()
         val number = binding.uploadNumber.text.toString()
