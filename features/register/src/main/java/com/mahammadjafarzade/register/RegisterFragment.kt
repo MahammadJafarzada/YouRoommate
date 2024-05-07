@@ -47,9 +47,20 @@ class RegisterFragment : Fragment() {
             val userEmail = binding.edtEmail.text.toString()
             val userNumber = binding.edtNumber.text.toString()
             val userPassword = binding.edtPassword.text.toString()
+            val userConfirmPassword = binding.edtConfirmPassword.text.toString()
             if(userFullName.isNotEmpty() && userEmail.isNotEmpty() && userNumber.isNotEmpty() && userPassword.isNotEmpty()){
-                registerUser(userFullName,userEmail,userNumber,userPassword)
-            }else{
+                if( userPassword == userConfirmPassword){
+                    registerUser(userFullName,userEmail,userNumber,userPassword)
+
+                }
+                else{
+                    Toast.makeText(
+                        requireContext(),
+                        "Password doesn't same",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }else {
                 Toast.makeText(
                     requireContext(),
                     "All fields mandatory",
