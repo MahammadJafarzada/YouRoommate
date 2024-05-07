@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.mahammadjafarzade.account.AccountFragment
 import com.mahammadjafarzade.common.util.toHome
+import com.mahammadjafarzade.common.util.toLogin
 import com.mahammadjafarzade.entities.model.UserData
 import com.mahammadjafarzade.register.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,10 +39,13 @@ class RegisterFragment : Fragment() {
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.reference.child("users")
 
+        binding.loginText.setOnClickListener {
+            findNavController().toLogin()
+        }
         binding.registerButton.setOnClickListener {
             val userFullName = binding.edtName.text.toString()
             val userEmail = binding.edtEmail.text.toString()
-            val userNumber = binding.edtnumber.text.toString()
+            val userNumber = binding.edtNumber.text.toString()
             val userPassword = binding.edtPassword.text.toString()
             if(userFullName.isNotEmpty() && userEmail.isNotEmpty() && userNumber.isNotEmpty() && userPassword.isNotEmpty()){
                 registerUser(userFullName,userEmail,userNumber,userPassword)

@@ -99,7 +99,6 @@ class HomeFragment : Fragment(), HomeScreenAdapter.OnFavoriteItemClickListener {
         val searchList = ArrayList<RoomCard>()
         for (dataClass in dataList) {
             if (dataClass.title?.contains(text, ignoreCase = true) == true ||
-                dataClass.description?.contains(text, ignoreCase = true) == true ||
                 dataClass.city?.contains(text, ignoreCase = true) == true) {
                 searchList.add(dataClass)
             }

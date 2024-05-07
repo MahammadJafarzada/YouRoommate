@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater,container,false)
         auth = FirebaseAuth.getInstance()
 
-        binding.registerButton.setOnClickListener {
+        binding.registerText.setOnClickListener {
             findNavController().toRegister()
         }
         binding.loginButton.setOnClickListener {
